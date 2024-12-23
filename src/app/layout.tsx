@@ -20,8 +20,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  analytics,
+  team,
 }: Readonly<{
   children: React.ReactNode;
+  analytics: React.ReactNode;
+  team: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -29,6 +33,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {analytics}
+        {team}
       </body>
     </html>
   );
