@@ -12,35 +12,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  auth,
 }: Readonly<{
   children: React.ReactNode;
-  auth: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav className="bg-gradient-to-r from-indigo-600 to-blue-500 px-4 py-3 shadow-md">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/"
-                className="text-white font-semibold text-lg hover:text-gray-200 transition-colors duration-200"
-              >
-                홈으로
-              </Link>
-              <Link
-                href="/login"
-                className="text-white font-semibold text-lg hover:text-gray-200 transition-colors duration-200"
-              >
-                로그인 모달 열기
-              </Link>
-            </div>
-            <div>{auth}</div>
-          </div>
-        </nav>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
