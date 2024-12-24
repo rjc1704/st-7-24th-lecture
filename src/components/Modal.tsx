@@ -17,7 +17,9 @@ export function Modal({ children }: { children: React.ReactNode }) {
       onClick={handleBackdropClick}
       className="bg-black/50 fixed left-0 top-0 right-0 bottom-0 flex justify-center items-center"
     >
-      <div className="w-[300px] h-[500px] border bg-green-300">{children}</div>
+      <div className="overflow-hidden max-h-[500px] flex justify-center items-center border bg-green-300">
+        {children}
+      </div>
     </div>
   );
 }

@@ -20,11 +20,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="flex gap-3 bg-yellow-200">
-          <Link href="/login">로그인 모달 열기</Link>
-          <Link href="/">홈으로</Link>
+        <nav className="bg-gradient-to-r from-indigo-600 to-blue-500 px-4 py-3 shadow-md">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link
+                href="/"
+                className="text-white font-semibold text-lg hover:text-gray-200 transition-colors duration-200"
+              >
+                홈으로
+              </Link>
+              <Link
+                href="/login"
+                className="text-white font-semibold text-lg hover:text-gray-200 transition-colors duration-200"
+              >
+                로그인 모달 열기
+              </Link>
+            </div>
+            <div>{auth}</div>
+          </div>
         </nav>
-        {auth}
         {children}
       </body>
     </html>
