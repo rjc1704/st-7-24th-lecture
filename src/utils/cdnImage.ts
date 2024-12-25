@@ -48,14 +48,22 @@ export const checkSupportWebP = (): Promise<boolean> => {
 
 type PreloadImg = { src: string; width: number; height: number };
 export const preloadImgs = (imgs: PreloadImg[], supportingWebp: boolean) => {
-  imgs.forEach((img) => {
-    const { width, height, src } = img;
-    const image = new Image();
-    const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
-      width,
-      height,
-      src,
-    });
-    image.src = supportingWebp ? formattedUrl : originalUrl;
-  });
+  return Promise.all(
+    imgs.map((img) => {
+      const { width, height, src } = img;
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+          width,
+          height,
+          src,
+        });
+
+        image.onload = () => resolve(image);
+        image.onerror = () =>
+          reject(new Error(`Failed to load image: ${image.src}`));
+        image.src = supportingWebp ? formattedUrl : originalUrl;
+      });
+    }),
+  );
 };

@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { StaticImageData } from "next/image";
 
 interface ImgGalleryModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  images: string[];
+  images: StaticImageData[];
 }
 
 export default function ImgGalleryModal({
@@ -23,49 +24,50 @@ export default function ImgGalleryModal({
   onOpenChange,
   images,
 }: ImgGalleryModalProps) {
-  const { supportingWebp } = useContext(ImgFormatContext);
-  const IMG_WIDTH = 800;
-  const IMG_HEIGHT = 500;
-  const THUMBNAIL_IMG_WIDTH = 100;
-  const THUMBNAIL_IMG_HEIGHT = 60;
+  // const { supportingWebp } = useContext(ImgFormatContext);
+  // const IMG_WIDTH = 800;
+  // const IMG_HEIGHT = 500;
+  // const THUMBNAIL_IMG_WIDTH = 100;
+  // const THUMBNAIL_IMG_HEIGHT = 60;
 
   const items = images.map((src) => {
-    const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
-      width: IMG_WIDTH,
-      height: IMG_HEIGHT,
-      src,
-    });
-    const { originalUrl: thumbUrl, formattedUrl: thumbWebpUrl } =
-      getCloudinaryImgUrl({
-        width: THUMBNAIL_IMG_WIDTH,
-        height: THUMBNAIL_IMG_HEIGHT,
-        src,
-      });
+    // const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+    //   width: IMG_WIDTH,
+    //   height: IMG_HEIGHT,
+    //   src,
+    // });
+    // const { originalUrl: thumbUrl, formattedUrl: thumbWebpUrl } =
+    //   getCloudinaryImgUrl({
+    //     width: THUMBNAIL_IMG_WIDTH,
+    //     height: THUMBNAIL_IMG_HEIGHT,
+    //     src,
+    //   });
 
     return {
-      original: supportingWebp ? formattedUrl : originalUrl,
-      thumbnail: supportingWebp ? thumbWebpUrl : thumbUrl,
-      loading: "lazy",
-      thumbnailLoading: "lazy",
+      original: src.src,
+      thumbnail: src.src,
+      // original: supportingWebp ? formattedUrl : originalUrl,
+      // thumbnail: supportingWebp ? thumbWebpUrl : thumbUrl,
+      // loading: "lazy",
+      // thumbnailLoading: "lazy",
     } as ReactImageGalleryItem;
   });
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[850px] p-6">
+      <DialogContent className="w-auto p-4 bg-white">
         <DialogHeader>
           <DialogTitle>이미지 갤러리</DialogTitle>
         </DialogHeader>
 
-        <div className="w-full h-full overflow-hidden">
+        <div className="max-w-[400px]">
           <ImageGallery
             items={items}
             showPlayButton={false}
-            showFullscreenButton={true}
             showNav={true}
-            additionalClass="gallery-custom"
+            // additionalClass="gallery-custom"
             thumbnailPosition="bottom"
-            useBrowserFullscreen={true}
+            showThumbnails={true}
           />
         </div>
 
