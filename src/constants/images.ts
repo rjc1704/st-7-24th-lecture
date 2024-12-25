@@ -7,14 +7,11 @@ import cat6 from "@/assets/imgs/cat6.jpg";
 import cat7 from "@/assets/imgs/cat7.jpg";
 import banner1JPG from "@/assets/imgs/banner1.jpg";
 import banner2JPG from "@/assets/imgs/banner2.jpg";
-import banner1WEBP from "@/assets/imgs/banner1.webp";
-import banner2WEBP from "@/assets/imgs/banner2.webp";
+// import banner1WEBP from "@/assets/imgs/banner1.webp";
+// import banner2WEBP from "@/assets/imgs/banner2.webp";
 import { StaticImageData } from "next/image";
 
-export const BANNER_IMGS = [
-  { jpg: banner1JPG, webp: banner1WEBP },
-  { jpg: banner2JPG, webp: banner2WEBP },
-];
+export const BANNER_IMGS = [{ jpg: banner1JPG }, { jpg: banner2JPG }];
 export const CARD_IMGS: StaticImageData[] = [
   cat1,
   cat2,
