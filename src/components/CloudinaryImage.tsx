@@ -9,11 +9,17 @@ type Props = {
 };
 
 export default function CloudinaryImage({ width, height, src, alt }: Props) {
-  const { originalUrl, formattedUrl } = getCloudinaryImgUrl({ width, height, src, format: "webp" });
+  const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+    width,
+    height,
+    src,
+    format: "webp",
+  });
 
   return (
     <picture>
       <source srcSet={formattedUrl} type="image/webp" />
+      {/* <img src={originalUrl} alt={alt} /> */}
       <LazyLoadImage src={originalUrl} alt={alt} />
     </picture>
   );

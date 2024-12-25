@@ -16,7 +16,7 @@ import { StaticImageData } from "next/image";
 interface ImgGalleryModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  images: StaticImageData[];
+  images: string[];
 }
 
 export default function ImgGalleryModal({
@@ -24,32 +24,30 @@ export default function ImgGalleryModal({
   onOpenChange,
   images,
 }: ImgGalleryModalProps) {
-  // const { supportingWebp } = useContext(ImgFormatContext);
-  // const IMG_WIDTH = 800;
-  // const IMG_HEIGHT = 500;
-  // const THUMBNAIL_IMG_WIDTH = 100;
-  // const THUMBNAIL_IMG_HEIGHT = 60;
+  const { supportingWebp } = useContext(ImgFormatContext);
+  const IMG_WIDTH = 800;
+  const IMG_HEIGHT = 500;
+  const THUMBNAIL_IMG_WIDTH = 200;
+  const THUMBNAIL_IMG_HEIGHT = 130;
 
   const items = images.map((src) => {
-    // const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
-    //   width: IMG_WIDTH,
-    //   height: IMG_HEIGHT,
-    //   src,
-    // });
-    // const { originalUrl: thumbUrl, formattedUrl: thumbWebpUrl } =
-    //   getCloudinaryImgUrl({
-    //     width: THUMBNAIL_IMG_WIDTH,
-    //     height: THUMBNAIL_IMG_HEIGHT,
-    //     src,
-    //   });
+    const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+      width: IMG_WIDTH,
+      height: IMG_HEIGHT,
+      src,
+    });
+    const { originalUrl: thumbUrl, formattedUrl: thumbWebpUrl } =
+      getCloudinaryImgUrl({
+        width: THUMBNAIL_IMG_WIDTH,
+        height: THUMBNAIL_IMG_HEIGHT,
+        src,
+      });
 
     return {
-      original: src.src,
-      thumbnail: src.src,
-      // original: supportingWebp ? formattedUrl : originalUrl,
-      // thumbnail: supportingWebp ? thumbWebpUrl : thumbUrl,
-      // loading: "lazy",
-      // thumbnailLoading: "lazy",
+      original: supportingWebp ? formattedUrl : originalUrl,
+      thumbnail: supportingWebp ? thumbWebpUrl : thumbUrl,
+      loading: "lazy",
+      thumbnailLoading: "lazy",
     } as ReactImageGalleryItem;
   });
 
@@ -65,7 +63,6 @@ export default function ImgGalleryModal({
             items={items}
             showPlayButton={false}
             showNav={true}
-            // additionalClass="gallery-custom"
             thumbnailPosition="bottom"
             showThumbnails={true}
           />
