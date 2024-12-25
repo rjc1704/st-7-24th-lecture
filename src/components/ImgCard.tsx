@@ -19,14 +19,14 @@ export default function ImgCard({
           <h4 className="font-bold text-large">Frontend Radio</h4>
         </CardHeader>
         <CardContent className="overflow-hidden py-2 rounded-xl h-[185px]">
-          {/* <img src={src.src} width={270} height={175} alt="Card background" /> */}
+          <img src={src} width={270} height={175} alt="Card background" />
           {/* <Image src={src} width={270} height={175} alt="Card background" /> */}
-          <CloudinaryImage
-            src={src}
+          {/* <CloudinaryImage
+            src={src.src}
             width={270}
             height={175}
             alt="Card background"
-          />
+          /> */}
         </CardContent>
       </Card>
     </div>
