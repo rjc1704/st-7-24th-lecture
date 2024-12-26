@@ -36,10 +36,10 @@ export default function RootLayout({
                 로그인 모달 열기
               </Link>
             </div>
-            <div>{auth}</div>
           </div>
         </nav>
         {children}
+        {auth}
       </body>
     </html>
   );
