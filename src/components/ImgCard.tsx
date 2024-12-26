@@ -22,7 +22,7 @@ export default function ImgCard({
           <img src={src} width={270} height={175} alt="Card background" />
           {/* <Image src={src} width={270} height={175} alt="Card background" /> */}
           {/* <CloudinaryImage
-            src={src.src}
+            src={src}
             width={270}
             height={175}
             alt="Card background"
