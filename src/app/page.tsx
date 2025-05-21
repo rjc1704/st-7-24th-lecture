@@ -80,7 +80,7 @@ export default function Home() {
         </section>
         {/* 카드 이미지리스트 섹션 */}
         <section
-          onMouseEnter={() => preloadImgs(preloadingImgs, supportingWebp)}
+          onMouseEnter={() => preloadImgs(preloadingImgs)}
           className="w-full py-12 md:py-24 lg:py-32"
         >
           <div className="container px-4 md:px-6">

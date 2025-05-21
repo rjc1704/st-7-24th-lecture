@@ -2,6 +2,12 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 // import CloudinaryImage from "./CloudinaryImage";
 import Image, { StaticImageData } from "next/image";
 import CloudinaryImage from "./CloudinaryImage";
+import { getCloudinaryImgUrl } from "@/utils/cdnImage";
+
+const cloudinaryLoader = ({ src, width }: { src: string; width: number }) => {
+  // https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat1_s8bmgr.jpg
+  return getCloudinaryImgUrl({ width, src });
+};
 
 export default function ImgCard({
   src,
@@ -19,9 +25,16 @@ export default function ImgCard({
           <h4 className="font-bold text-large">Frontend Radio</h4>
         </CardHeader>
         <CardContent className="overflow-hidden py-2 rounded-xl h-[185px]">
-          {/* <img src={src.src} width={270} height={175} alt="Card background" /> */}
+          {/* <img src={src} width={270} height={175} alt="Card background" /> */}
           {/* <Image src={src} width={270} height={175} alt="Card background" /> */}
-          <CloudinaryImage
+          {/* <CloudinaryImage
+            src={src}
+            width={270}
+            height={175}
+            alt="Card background"
+          /> */}
+          <Image
+            loader={cloudinaryLoader}
             src={src}
             width={270}
             height={175}

@@ -31,21 +31,20 @@ export default function ImgGalleryModal({
   const THUMBNAIL_IMG_HEIGHT = 130;
 
   const items = images.map((src) => {
-    const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+    const originalUrl = getCloudinaryImgUrl({
       width: IMG_WIDTH,
       height: IMG_HEIGHT,
       src,
     });
-    const { originalUrl: thumbUrl, formattedUrl: thumbWebpUrl } =
-      getCloudinaryImgUrl({
-        width: THUMBNAIL_IMG_WIDTH,
-        height: THUMBNAIL_IMG_HEIGHT,
-        src,
-      });
+    const thumbUrl = getCloudinaryImgUrl({
+      width: THUMBNAIL_IMG_WIDTH,
+      height: THUMBNAIL_IMG_HEIGHT,
+      src,
+    });
 
     return {
-      original: supportingWebp ? formattedUrl : originalUrl,
-      thumbnail: supportingWebp ? thumbWebpUrl : thumbUrl,
+      original: originalUrl,
+      thumbnail: thumbUrl,
       loading: "lazy",
       thumbnailLoading: "lazy",
     } as ReactImageGalleryItem;

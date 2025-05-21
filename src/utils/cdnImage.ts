@@ -1,3 +1,5 @@
+import { CLOUDINARY_BASE_URL } from "@/constants/images";
+
 export const changeImgFormat = ({
   src,
   format,
@@ -10,26 +12,18 @@ export const changeImgFormat = ({
 
 type CloudinaryImg = {
   width: number;
-  height: number;
+  height?: number;
   src: string;
   format?: string;
 };
 
 export const getCloudinaryImgUrl = ({
   width,
-  height,
+  height = undefined,
   src,
-  format = "webp",
 }: CloudinaryImg) => {
-  const extendedSrc = src.replace(
-    "upload/",
-    `upload/w_${width},h_${height},c_fill,q_auto/`,
-  );
-
-  return {
-    originalUrl: extendedSrc,
-    formattedUrl: changeImgFormat({ src: extendedSrc, format }),
-  };
+  const heightStr = height ? `,h_${height}` : "";
+  return `${CLOUDINARY_BASE_URL}/w_${width}${heightStr},c_fill,q_auto,f_auto/${src}`;
 };
 
 export const checkSupportWebP = (): Promise<boolean> => {
@@ -47,13 +41,13 @@ export const checkSupportWebP = (): Promise<boolean> => {
 };
 
 type PreloadImg = { src: string; width: number; height: number };
-export const preloadImgs = (imgs: PreloadImg[], supportingWebp: boolean) => {
+export const preloadImgs = (imgs: PreloadImg[]) => {
   return Promise.all(
     imgs.map((img) => {
       const { width, height, src } = img;
       return new Promise((resolve, reject) => {
         const image = new Image();
-        const { originalUrl, formattedUrl } = getCloudinaryImgUrl({
+        const imgUrl = getCloudinaryImgUrl({
           width,
           height,
           src,
@@ -62,7 +56,7 @@ export const preloadImgs = (imgs: PreloadImg[], supportingWebp: boolean) => {
         image.onload = () => resolve(image);
         image.onerror = () =>
           reject(new Error(`Failed to load image: ${image.src}`));
-        image.src = supportingWebp ? formattedUrl : originalUrl;
+        image.src = imgUrl;
       });
     }),
   );

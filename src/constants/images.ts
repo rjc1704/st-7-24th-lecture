@@ -24,12 +24,25 @@ export const BANNER_IMGS = [
 //   cat6,
 //   cat7,
 // ];
+
+export const CLOUDINARY_BASE_URL =
+  "https://res.cloudinary.com/dv8ifoygg/image/upload";
+
 export const CARD_IMGS = [
-  "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat1_s8bmgr.jpg",
+  `v1706662293/cat1_s8bmgr.jpg`,
+  `v1706662293/cat2_xhofby.jpg`,
+  `v1706662295/cat3_vedzzh.jpg`,
+  `v1706662293/cat4_ihjwv8.jpg`,
+  `v1706662293/cat5_e94blx.jpg`,
+  `v1706662300/cat6_jielzl.jpg`,
+  `v1706786484/cat7_xdqpdr.jpg`,
+];
+/* 
+"https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat1_s8bmgr.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat2_xhofby.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662295/cat3_vedzzh.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat4_ihjwv8.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662293/cat5_e94blx.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706662300/cat6_jielzl.jpg",
   "https://res.cloudinary.com/dv8ifoygg/image/upload/v1706786484/cat7_xdqpdr.jpg",
-];
+*/
